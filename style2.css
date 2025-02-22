@@ -1,0 +1,215 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222;
+    color: white;
+    padding: 15px 20px;
+}
+
+nav h1 {
+    font-size: 24px;
+}
+
+nav input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+nav span {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Product Container */
+.product-container {
+    display: flex;
+    gap: 40px;
+    margin: 40px auto;
+    width: 80%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Image Section (Main Image + Small Images) */
+.image-section {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    position: relative;
+}
+
+/* 🔹 Small Images (Inside Main Image Div, Left-Aligned) */
+.thumbnail {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.small-images {
+    display: flex;
+    flex-direction: column; /* ✅ Stack images vertically */
+    gap: 10px;
+    align-items: center;
+    position: absolute;
+    left: 10px; /* ✅ Inside the div, left-aligned */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+/* Small Image Styles */
+.small-images img {
+    width: 67px;
+    height: 67px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, border 0.3s;
+    background: white;
+    padding: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.small-images img:hover {
+    transform: scale(1.1);
+    border: 2px solid #ff9800;
+}
+
+/* Main Product Image */
+.thumbnail img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    transition: 0.3s;
+    margin-left: 70px; /* ✅ Creates space for small images */
+}
+
+/* Product Details */
+.product-details {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-details h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.product-details p {
+    font-size: 18px;
+    color: #555;
+}
+
+.product-details h3 {
+    color: #e44d26;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+/* Buttons */
+button {
+    background-color: #ff9800;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #e68900;
+}
+
+/* 🔹 Reviews Section */
+.reviews-heading {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 24px;
+    color: #444;
+}
+
+.reviews-container {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.review-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.review-card h4 {
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.review-card p {
+    color: #777;
+    font-size: 14px;
+}
+
+/* Star Rating */
+.star-rating {
+    color: #FFD700;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-container {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .image-section {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .small-images {
+        flex-direction: row;
+        position: static;
+        transform: none;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .thumbnail img {
+        margin-left: 0;
+    }
+
+    .product-details {
+        width: 100%;
+        text-align: center;
+    }
+}
