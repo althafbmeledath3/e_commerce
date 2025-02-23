@@ -7,24 +7,24 @@ const reviewsContainer = document.getElementById("reviews-container");
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
 
-// Fetch product details from the API
+
 fetch(`https://dummyjson.com/products/${productId}`)
   .then(response => response.json())
   .then(product => {
-    // Set main product image
+    //  main product image
     productImage.src = product.thumbnail;
 
-    // Display product details
+    // product details
     productDetails.innerHTML = `
       <h2>${product.title}</h2>
       <p>${product.description}</p>
-      <h3>₹${product.price}</h3>
+      <h3>$${product.price}</h3>
       <button onclick="addToCart(${product.id}, '${product.title}', ${product.price}, '${product.thumbnail}')">
         Add to Cart
       </button>
     `;
 
-    // Display small images (hover effect to change main image)
+    // small images hover 
     product.images.forEach(imgSrc => {
       let imgElement = document.createElement("img");
       imgElement.src = imgSrc;
@@ -35,13 +35,14 @@ fetch(`https://dummyjson.com/products/${productId}`)
       smallImagesContainer.appendChild(imgElement);
     });
 
-    // ✅ Fetch and display customer reviews
+    // customer reviews
+
     if (product.reviews && product.reviews.length > 0) {
       product.reviews.forEach(review => {
         let reviewCard = document.createElement("div");
         reviewCard.classList.add("review-card");
         reviewCard.innerHTML = `
-          <h4>${review.reviewerName || "Anonymous"}</h4>  <!-- ✅ Corrected reviewer name -->
+          <h4>${review.reviewerName || "Anonymous"}</h4>  
           <div class="star-rating">${generateStars(review.rating)}</div>
           <p>${review.comment}</p>
         `;
@@ -56,7 +57,7 @@ fetch(`https://dummyjson.com/products/${productId}`)
     reviewsContainer.innerHTML = "<p>Failed to load reviews.</p>";
   });
 
-// ⭐ Function to generate star ratings (★ filled, ☆ empty)
+// generate stars hehe google fonts
 function generateStars(rating) {
   let stars = "";
   for (let i = 1; i <= 5; i++) {
@@ -65,7 +66,7 @@ function generateStars(rating) {
   return stars;
 }
 
-// ✅ Cart Management: Add to cart & redirect to cart.html
+// cart
 function addToCart(id, title, price, image) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   let existingItem = cart.find(item => item.id === id);
@@ -77,17 +78,18 @@ function addToCart(id, title, price, image) {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
+
   updateCartCount();
 
-  // Redirect to cart page after adding
+  // go to cart after adding
   window.location.href = "cart.html";
 }
 
-// ✅ Update cart count in navbar
+// cart counter function
 function updateCartCount() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cartCount.textContent = cart.length;
 }
 
-// Call this function on page load
+//auto caall on page onload
 updateCartCount();

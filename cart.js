@@ -2,7 +2,8 @@ const cartContainer = document.getElementById("cart-container");
 const totalPriceElement = document.getElementById("total-price");
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Function to render cart items beautifully
+// Function
+
 function renderCart() {
     cartContainer.innerHTML = "";
     let totalPrice = 0;
@@ -10,7 +11,7 @@ function renderCart() {
     if (cart.length === 0) {
         cartContainer.innerHTML = `
             <h2>Your cart is empty! 🛒</h2>
-            <p>Add some products to see them here.</p>
+            <p>Your cart is getting lonely , fill it up with products.</p>
         `;
         totalPriceElement.style.display = "none";
         return;
@@ -28,7 +29,7 @@ function renderCart() {
             <img src="${item.image}" alt="${item.title}">
             <div class="cart-details">
                 <h4>${item.title}</h4>
-                <p>₹${item.price} x ${item.qty} = ₹${item.price * item.qty}</p>
+                <p>$${item.price} x ${item.qty} = $${item.price * item.qty}</p>
             </div>
             <div class="quantity">
                 <button onclick="updateQty(${index}, 1)">+</button>
@@ -41,10 +42,10 @@ function renderCart() {
         cartContainer.appendChild(cartItem);
     });
 
-    totalPriceElement.textContent = `Total: ₹${totalPrice}`;
+    totalPriceElement.textContent = `Total: $ ${totalPrice}`;
 }
 
-// Function to update quantity with animation
+
 function updateQty(index, change) {
     if (cart[index].qty + change > 0) {
         cart[index].qty += change;
@@ -57,14 +58,13 @@ function updateQty(index, change) {
     renderCart();
 }
 
-// Function to remove item from cart smoothly
+
 function removeItem(index) {
     cart.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
 }
 
-// Function to checkout
 function checkout() {
     if (cart.length === 0) {
         alert("Your cart is empty!");
@@ -75,5 +75,6 @@ function checkout() {
     location.reload();
 }
 
-// Initial render
+//auto call this function when page loads funciton
+
 renderCart();
